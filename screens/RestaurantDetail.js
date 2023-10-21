@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
   Switch,
+  ScrollView,
   TextInput,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -414,10 +415,9 @@ const RestaurantDetail = () => {
             Recommended
           </Text>
           {[1, 2].map((_, index) => (
-            <TouchableOpacity
-              onPress={() => setFoodModal(true)}
+            <ScrollView
               key={index}
-              style={{
+              contentContainerStyle={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 marginTop: 20,
@@ -485,13 +485,13 @@ const RestaurantDetail = () => {
                   [Veg preparation] Spring mix, plant based, organic...
                 </Text>
               </View>
-              <View>
+              <TouchableOpacity onPress={() => setFoodModal(true)}>
                 <Image
                   source={require('../assets/burger.png')}
                   style={{width: 130, height: 96, borderRadius: 15}}
                 />
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </ScrollView>
           ))}
         </View>
 
