@@ -9,11 +9,15 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import {CartStrip} from '../components/CartStrip';
+import {useSelector, useDispatch} from 'react-redux';
 import SingleFoodItem from '../components/SingleFoodItem';
+import {AddProductToCartButton} from '../components/AddProductToCartButton';
 
 const RestaurantDetail = () => {
+  const cart = useSelector(state => state.cart.cart);
+
   const [value, setValue] = useState('DELIVERY');
   const [menu, setMenu] = useState('Full');
   const [isEnabled, setIsEnabled] = useState(false);
@@ -45,19 +49,48 @@ const RestaurantDetail = () => {
     },
   ];
 
-  return (
-    <>
-      {/*************FOOD ITEM MODAL*************/}
+  const foodItems = [
+    {
+      id: '1',
+      name: 'Plant Protien Bowl',
+      price: 220,
+      url: require('../assets/vegsalad.png'),
+    },
+    {
+      id: '2',
+      name: 'Spring Veg Plater',
+      price: 320,
+      url: require('../assets/spring.png'),
+    },
+    {
+      id: '3',
+      name: 'Plant Protien Bowl',
+      price: 220,
+      url: require('../assets/vegsalad.png'),
+    },
+    {
+      id: '4',
+      name: 'Spring Veg Plater',
+      price: 320,
+      url: require('../assets/spring.png'),
+    },
+    {
+      id: '5',
+      name: 'Plant Protien Bowl',
+      price: 220,
+      url: require('../assets/vegsalad.png'),
+    },
+    {
+      id: '6',
+      name: 'Spring Veg Plater',
+      price: 320,
+      url: require('../assets/spring.png'),
+    },
+  ];
 
-      {/* {Object.keys(food).length > 0 && ( */}
-      <SingleFoodItem
-        foodModal={foodModal}
-        setFoodModal={setFoodModal}
-        // food={food}
-      />
-      {/* )} */}
-
-      <View style={styles.container}>
+  const HeaderOfList = () => {
+    return (
+      <ScrollView style={styles.container}>
         <View
           style={{
             flexDirection: 'row',
@@ -409,92 +442,6 @@ const RestaurantDetail = () => {
           </View>
         </View>
 
-        {/**********FOOD ITEMS************/}
-        <View style={{paddingHorizontal: 10, marginTop: 10}}>
-          <Text style={{color: 'black', fontSize: 12, fontWeight: '400'}}>
-            Recommended
-          </Text>
-          {[1, 2].map((_, index) => (
-            <ScrollView
-              key={index}
-              contentContainerStyle={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 20,
-              }}>
-              <View>
-                <View
-                  style={{
-                    borderColor: '#72CB53',
-                    borderWidth: 0.5,
-                    width: 14,
-                    height: 14,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginVertical: 5,
-                  }}>
-                  <View
-                    style={{
-                      borderColor: '#72CB53',
-                      borderRadius: 50,
-                      backgroundColor: '#72CB53',
-                      height: 7,
-                      width: 7,
-                    }}
-                  />
-                </View>
-                <Text style={{color: '#000', fontWeight: '400', fontSize: 14}}>
-                  Plant Protien Bowl
-                </Text>
-                <Text
-                  style={{color: '#3C3636', fontWeight: '400', fontSize: 10}}>
-                  ₹ 220
-                </Text>
-
-                <View style={{flexDirection: 'row', marginVertical: 2}}>
-                  <Image
-                    source={require('../assets/rating.png')}
-                    style={{height: 12, width: 83}}
-                  />
-                  <View
-                    style={{
-                      borderColor: '#E41515',
-                      borderRadius: 10,
-                      borderWidth: 1,
-                      backgroundColor: '#E4151550',
-                      paddingHorizontal: 5,
-                      marginHorizontal: 10,
-                    }}>
-                    <Text
-                      style={{
-                        color: '#E41515',
-                        fontWeight: '400',
-                        fontSize: 8,
-                      }}>
-                      Must Try
-                    </Text>
-                  </View>
-                </View>
-                <Text
-                  style={{
-                    color: '#817070',
-                    fontSize: 10,
-                    fontWeight: '400',
-                    width: '80%',
-                  }}>
-                  [Veg preparation] Spring mix, plant based, organic...
-                </Text>
-              </View>
-              <TouchableOpacity onPress={() => setFoodModal(true)}>
-                <Image
-                  source={require('../assets/burger.png')}
-                  style={{width: 130, height: 96, borderRadius: 15}}
-                />
-              </TouchableOpacity>
-            </ScrollView>
-          ))}
-        </View>
-
         {/***********MENU BUTTON*******************/}
         {/* <View style={{alignItems: 'flex-end', paddingHorizontal: 20}}>
         <TouchableOpacity
@@ -517,44 +464,127 @@ const RestaurantDetail = () => {
         </TouchableOpacity>
       </View> */}
 
-        <CartStrip />
-
-        {/************CASHBACK COUPON******************/}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingHorizontal: 10,
-            backgroundColor: '#F8F4F4',
-            marginTop: 20,
-            alignItems: 'center',
-          }}>
-          <View
-            style={{backgroundColor: '#1A30F3', borderRadius: 5, padding: 5}}>
-            <Text style={{color: '#fff', fontSize: 13, fontWeight: '700'}}>
-              30% OFF up to ₹75
-            </Text>
-          </View>
-          <View style={{alignItems: 'center'}}>
-            <Text
-              style={{
-                color: '#000',
-                fontSize: 10,
-                fontWeight: '400',
-                width: '75%',
-              }}>
-              Use code ZOMSAFETY on orders with items worth ₹159 or more
-            </Text>
-          </View>
+        <View style={{paddingHorizontal: 10, marginTop: 10}}>
+          <Text style={{color: 'black', fontSize: 12, fontWeight: '400'}}>
+            Recommended
+          </Text>
         </View>
-      </View>
+      </ScrollView>
+    );
+  };
+
+  return (
+    <>
+      {/*************FOOD ITEM MODAL*************/}
+
+      <SingleFoodItem foodModal={foodModal} setFoodModal={setFoodModal} />
+
+      {/**********FOOD ITEMS************/}
+
+      <FlatList
+        ListHeaderComponent={<HeaderOfList />}
+        ListFooterComponent={
+          <View style={styles.listFooterConataier}>
+            <View
+              style={{
+                backgroundColor: '#1A30F3',
+                borderRadius: 5,
+                padding: 5,
+              }}>
+              <Text style={{color: '#fff', fontSize: 13, fontWeight: '700'}}>
+                30% OFF up to ₹75
+              </Text>
+            </View>
+            <View style={{alignItems: 'center'}}>
+              <Text
+                style={{
+                  color: '#000',
+                  fontSize: 10,
+                  fontWeight: '400',
+                  width: '75%',
+                }}>
+                Use code ZOMSAFETY on orders with items worth ₹159 or more
+              </Text>
+            </View>
+          </View>
+        }
+        data={foodItems}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({item, index}) => (
+          <View key={index} style={styles.singleItemContainer}>
+            <View>
+              <View style={styles.itemDesc}>
+                <View
+                  style={{
+                    borderColor: '#72CB53',
+                    borderRadius: 50,
+                    backgroundColor: '#72CB53',
+                    height: 7,
+                    width: 7,
+                  }}
+                />
+              </View>
+              <TouchableOpacity onPress={() => setFoodModal(true)}>
+                <Text style={{color: '#000', fontWeight: '400', fontSize: 14}}>
+                  {item.name}
+                </Text>
+              </TouchableOpacity>
+              <Text style={{color: '#3C3636', fontWeight: '400', fontSize: 10}}>
+                ₹ {item.price}
+              </Text>
+
+              <View style={{flexDirection: 'row', marginVertical: 2}}>
+                <Image
+                  source={require('../assets/rating.png')}
+                  style={{height: 12, width: 83}}
+                />
+                <View style={styles.mustTry}>
+                  <Text
+                    style={{
+                      color: '#E41515',
+                      fontWeight: '400',
+                      fontSize: 8,
+                    }}>
+                    Must Try
+                  </Text>
+                </View>
+              </View>
+              <Text
+                style={{
+                  color: '#817070',
+                  fontSize: 10,
+                  fontWeight: '400',
+                  width: '80%',
+                }}>
+                [Veg preparation] Spring mix, plant based, organic...
+              </Text>
+            </View>
+
+            <Image
+              source={item.url}
+              style={{width: 130, height: 96, borderRadius: 15}}
+            />
+            <AddProductToCartButton
+              product={item}
+              index={index}
+              style={{
+                width: 100,
+                position: 'absolute',
+                top: 70,
+                right: 12,
+                borderRadius: 15,
+              }}
+            />
+          </View>
+        )}
+      />
+      {cart.length > 0 && <CartStrip />}
     </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // paddingHorizontal: 10,
     paddingTop: '10%',
     backgroundColor: '#fff',
   },
@@ -563,6 +593,39 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  itemDesc: {
+    borderColor: '#72CB53',
+    borderWidth: 0.5,
+    width: 14,
+    height: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 5,
+  },
+  listFooterConataier: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  singleItemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+  },
+  mustTry: {
+    borderColor: '#E41515',
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: '#E4151550',
+    paddingHorizontal: 5,
+    marginHorizontal: 10,
   },
 });
 

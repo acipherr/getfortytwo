@@ -7,8 +7,11 @@ import {PersonDetail} from './PersonDetail';
 import {OrderForSomeOneElse} from './OrderForSomeOneElse';
 import {ClimateConciousDelivery} from './ClimateConciousDelivery';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useSelector} from 'react-redux';
+import {AddProductToCartButton} from './AddProductToCartButton';
 
 export const OrderModal = ({orderModal, setOrderModal}) => {
+  const cart = useSelector(state => state.cart.cart);
   const address = [
     {
       url: require('../assets/Group74.png'),
@@ -91,77 +94,79 @@ export const OrderModal = ({orderModal, setOrderModal}) => {
 
           <LineDivider width={0.5} />
 
-          {/*****************CART ITEMS********************/}
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 15,
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginVertical: 10,
-              }}>
-              <View>
-                <Image
-                  source={require('../assets/VegIcon.png')}
-                  style={{width: 14, height: 14, marginRight: 20}}
-                />
-              </View>
-              <View>
-                <Text style={{color: '#000', fontSize: 16, fontWeight: '400'}}>
-                  Plant Protein Bowl
-                </Text>
-                <Text style={{color: '#000', fontSize: 12, fontWeight: '400'}}>
-                  ₹ 250
-                </Text>
-                <Text
-                  style={{color: '#817070', fontSize: 10, fontWeight: '400'}}>
-                  Add on Mushroom
-                </Text>
-              </View>
-            </View>
-
-            <View>
-              <View
-                style={{
-                  borderColor: 'red',
-                  backgroundColor: '#CB202D80',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  flexDirection: 'row',
-                  width: 80,
-                  padding: 5,
-                }}>
-                <Text style={{color: 'red', fontSize: 16, fontWeight: '400'}}>
-                  -
-                </Text>
-                <Text
-                  style={{
-                    color: '#000',
-                    fontSize: 16,
-                    fontWeight: '400',
-                    marginHorizontal: 20,
-                  }}>
-                  1
-                </Text>
-                <Text style={{color: 'red', fontSize: 16, fontWeight: '400'}}>
-                  +
-                </Text>
-              </View>
-            </View>
-          </View>
-          <Text style={{textAlign: 'center'}}>
-            Add Cooking Instruction (optional)
-          </Text>
-
-          <LineDivider width={2} />
-
           {/***************Offers section**********************/}
 
           <ScrollView style={{marginTop: 10}}>
+            {/*****************CART ITEMS********************/}
+            {cart.map((item, index) => (
+              <>
+                <View
+                  key={index}
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    paddingHorizontal: 15,
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      marginVertical: 10,
+                    }}>
+                    <View>
+                      <Image
+                        source={require('../assets/VegIcon.png')}
+                        style={{width: 14, height: 14, marginRight: 20}}
+                      />
+                    </View>
+
+                    <View>
+                      <Text
+                        style={{
+                          color: '#000',
+                          fontSize: 16,
+                          fontWeight: '400',
+                        }}>
+                        {item.name}
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#000',
+                          fontSize: 12,
+                          fontWeight: '400',
+                        }}>
+                        ₹ {item.price}
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#817070',
+                          fontSize: 10,
+                          fontWeight: '400',
+                        }}>
+                        Add on Mushroom
+                      </Text>
+                    </View>
+                  </View>
+
+                  <AddProductToCartButton
+                    product={item}
+                    index={index}
+                    style={{
+                      width: 100,
+                      position: 'absolute',
+                      top: 10,
+                      right: 10,
+                      borderRadius: 15,
+                    }}
+                  />
+                </View>
+              </>
+            ))}
+            <Text style={{textAlign: 'center'}}>
+              Add Cooking Instruction (optional)
+            </Text>
+            <LineDivider width={2} />
+
             <Text
               style={{
                 fontSize: 16,

@@ -23,13 +23,18 @@ import {NavigationContainer} from '@react-navigation/native';
 import SignInScreen from './screens/SignInScreen';
 import HomeScreen from './screens/HomeScreen';
 import AutofillOtpScreen from './screens/AutofillOtpScreen';
+import {Provider} from 'react-redux';
+import store from './store';
+
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <NavigationContainer>
-      <DrawerNavigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <DrawerNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
