@@ -24,7 +24,6 @@ const RestaurantDetail = () => {
   const [isEnabled1, setIsEnabled1] = useState(false);
   const [text, onChangeText] = React.useState('Useless Text');
   const [number, onChangeNumber] = React.useState('');
-
   const [foodModal, setFoodModal] = useState(false);
   const [food, setFood] = useState({});
 
@@ -64,27 +63,27 @@ const RestaurantDetail = () => {
     },
     {
       id: '3',
-      name: 'Plant Protien Bowl',
+      name: 'Burger Veg',
       price: 220,
-      url: require('../assets/vegsalad.png'),
+      url: require('../assets/burger.png'),
     },
     {
       id: '4',
-      name: 'Spring Veg Plater',
+      name: 'Noodles veg',
       price: 320,
-      url: require('../assets/spring.png'),
+      url: require('../assets/fastFood.png'),
     },
     {
       id: '5',
-      name: 'Plant Protien Bowl',
+      name: 'Sweets',
       price: 220,
-      url: require('../assets/vegsalad.png'),
+      url: require('../assets/mithai.png'),
     },
     {
       id: '6',
-      name: 'Spring Veg Plater',
+      name: 'shakes',
       price: 320,
-      url: require('../assets/spring.png'),
+      url: require('../assets/shake.png'),
     },
   ];
 
@@ -109,7 +108,7 @@ const RestaurantDetail = () => {
             </Text>
           </View>
 
-          <View style={{marginTop: -10}}>
+          <View style={{}}>
             <View
               style={{
                 width: 86,
@@ -477,7 +476,11 @@ const RestaurantDetail = () => {
     <>
       {/*************FOOD ITEM MODAL*************/}
 
-      <SingleFoodItem foodModal={foodModal} setFoodModal={setFoodModal} />
+      <SingleFoodItem
+        foodModal={foodModal}
+        setFoodModal={setFoodModal}
+        food={food}
+      />
 
       {/**********FOOD ITEMS************/}
 
@@ -524,7 +527,11 @@ const RestaurantDetail = () => {
                   }}
                 />
               </View>
-              <TouchableOpacity onPress={() => setFoodModal(true)}>
+              <TouchableOpacity
+                onPress={() => {
+                  setFoodModal(true);
+                  setFood(item);
+                }}>
                 <Text style={{color: '#000', fontWeight: '400', fontSize: 14}}>
                   {item.name}
                 </Text>
@@ -562,7 +569,11 @@ const RestaurantDetail = () => {
 
             <Image
               source={item.url}
-              style={{width: 130, height: 96, borderRadius: 15}}
+              style={{
+                width: 130,
+                height: 96,
+                borderRadius: 15,
+              }}
             />
             <AddProductToCartButton
               product={item}
@@ -585,7 +596,7 @@ const RestaurantDetail = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: '10%',
+    paddingTop: '8%',
     backgroundColor: '#fff',
   },
   switchContainer: {
@@ -614,9 +625,10 @@ const styles = StyleSheet.create({
   },
   singleItemContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     paddingTop: 20,
     paddingHorizontal: 10,
+    paddingRight: 10,
     backgroundColor: '#fff',
   },
   mustTry: {

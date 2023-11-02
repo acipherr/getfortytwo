@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 import SingleFoodItem from './SingleFoodItem';
 import {useNavigation} from '@react-navigation/native';
 

@@ -1,15 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToCart, decreaseQuantity, incrementQuantity} from '../CartReducer';
 
-export const AddProductToCartButton = ({product, style, index}) => {
+export const AddProductToCartButton = ({
+  product,
+  style,
+  index,
+  orderModal = false,
+}) => {
   const cartItems = useSelector(state => state.cart.cart);
-  console.log(
-    'cartItems',
-    cartItems.findIndex(item => item.id == product.id),
-  );
+  // console.log(
+  //   'cartItems',
+  //   cartItems.findIndex(item => item.id == product.id),
+  // );
 
   const dispatch = useDispatch();
 
@@ -18,15 +23,16 @@ export const AddProductToCartButton = ({product, style, index}) => {
     height: 30,
     position: style.position,
     right: style.right,
-    top: style.top,
+    top: orderModal ? 10 : style.top,
     borderRadius: style.borderRadius,
   };
+
   return (
     <>
       {cartItems.findIndex(item => item.id == product.id) <= -1 ? (
         <TouchableOpacity
           onPress={() => dispatch(addToCart(product))}
-          style={[styles.container, {...CustomStyles}]}>
+          style={[styles.container, {...CustomStyles}, {top: 90}]}>
           <Text style={styles.text}>ADD</Text>
         </TouchableOpacity>
       ) : (
@@ -34,7 +40,7 @@ export const AddProductToCartButton = ({product, style, index}) => {
           style={[
             styles.container,
             {...CustomStyles},
-            {borderRadius: 5, top: 90, right: 20},
+            {borderRadius: 5, top: orderModal ? 10 : 90, right: 20},
           ]}>
           <View
             style={{

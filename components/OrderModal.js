@@ -1,12 +1,20 @@
 import React from 'react';
-import {View, Modal, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Modal,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {TipCard} from './TipCard';
 import {LineDivider} from './LineDivider';
 import {DeliveryInstructions} from './DeliveryInstructions';
 import {PersonDetail} from './PersonDetail';
 import {OrderForSomeOneElse} from './OrderForSomeOneElse';
 import {ClimateConciousDelivery} from './ClimateConciousDelivery';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
 import {AddProductToCartButton} from './AddProductToCartButton';
 
@@ -151,6 +159,7 @@ export const OrderModal = ({orderModal, setOrderModal}) => {
                   <AddProductToCartButton
                     product={item}
                     index={index}
+                    orderModal={true}
                     style={{
                       width: 100,
                       position: 'absolute',

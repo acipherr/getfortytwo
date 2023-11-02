@@ -6,6 +6,25 @@ const AutofillOtpScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{marginTop: '15%', alignItems: 'center'}}>
+        <View style={{alignItems: 'flex-end', width: '96%', marginTop: '5%'}}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('HomeScreen')}
+            style={{
+              width: 67,
+              height: 27,
+              borderRadius: 15,
+              backgroundColor: '#760C3780',
+              justifyContent: 'center',
+              position: 'absolute',
+              top: -50,
+              left: '30%',
+            }}>
+            <Text style={{color: 'white', textAlign: 'center', fontSize: 16}}>
+              Skip
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <Text style={{color: 'black', fontWeight: '400', fontSize: 16}}>
           We have sent a verification code to
         </Text>
@@ -15,7 +34,8 @@ const AutofillOtpScreen = ({navigation}) => {
         <View
           style={{
             flexDirection: 'row',
-            width: '50%',
+            minWidth: '55%',
+            maxWidth: '70%',
             justifyContent: 'space-between',
             marginTop: 10,
           }}>
@@ -55,6 +75,7 @@ const AutofillOtpScreen = ({navigation}) => {
                 fontWeight: '400',
                 fontSize: 16,
                 marginHorizontal: 15,
+                marginBottom: 5,
               }}>
               Didn’t receive the code?
             </Text>

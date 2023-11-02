@@ -114,7 +114,7 @@ const SignInScreen = ({navigation}) => {
           }}>
           By continuing, you agree to our
         </Text>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', marginBottom: 7}}>
           <Text style={styles.privacyText}>Terms of Service</Text>
           <Text style={[styles.privacyText, {marginHorizontal: 5}]}>
             Privacy Policy

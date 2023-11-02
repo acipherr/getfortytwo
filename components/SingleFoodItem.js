@@ -1,8 +1,15 @@
 import React from 'react';
-import {View, Modal, StyleSheet, Text, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  View,
+  Modal,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const SingleFoodItem = ({foodModal, setFoodModal}) => {
+const SingleFoodItem = ({foodModal, setFoodModal, food}) => {
   return (
     <Modal
       visible={foodModal}
@@ -29,7 +36,7 @@ const SingleFoodItem = ({foodModal, setFoodModal}) => {
             />
           </TouchableOpacity>
           <Image
-            source={require('../assets/foodPlate.png')}
+            source={food.url}
             style={{height: 256, width: 390, borderRadius: 30}}
           />
           <View>
@@ -40,7 +47,7 @@ const SingleFoodItem = ({foodModal, setFoodModal}) => {
                 fontWeight: '400',
                 paddingHorizontal: 10,
               }}>
-              Plant Protein Bowl{' '}
+              {food.name}{' '}
             </Text>
             <View
               style={{

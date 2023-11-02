@@ -5,7 +5,7 @@ import {LinearGradient} from 'react-native-linear-gradient';
 const DealBanner = () => {
   return (
     <View style={styles.container}>
-      <View style={{width: 180, height: 122, borderRadius: 10}}>
+      <View style={{width: 167, height: 122, borderRadius: 10}}>
         <LinearGradient
           colors={['rgba(255, 0, 0, 0.85)', 'rgba(255, 122, 0, 0.61)']}
           style={{
@@ -49,7 +49,7 @@ const DealBanner = () => {
         </LinearGradient>
       </View>
 
-      <View style={{width: 180, height: 122, borderRadius: 10}}>
+      <View style={{width: 167, height: 122, borderRadius: 10}}>
         <LinearGradient
           colors={['rgba(3, 159, 246, 1)', 'rgba(39, 154, 237, 0.33)']}
           style={{
@@ -88,8 +88,8 @@ const DealBanner = () => {
               <Image
                 source={require('../assets/Intersect.png')}
                 style={{
-                  width: 70,
-                  height: 110,
+                  width: 62,
+                  height: 98,
                   borderWidth: 1,
                   borderBottomRightRadius: 10,
                 }}
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     marginHorizontal: '2%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // borderWidth:1,
+    // borderWidth: 1,
     width: '95%',
   },
 });
