@@ -2,8 +2,10 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomNavigator from '../Bottom/BottomNavigator';
 import AutofillOtpScreen from '../../screens/AutofillOtpScreen';
-import HomeScreen from '../../screens/HomeScreen';
-import RestaurantDetail from '../../screens/RestaurantDetail';
+import EnterOtpScreen from '../../screens/EnterOtpScreen';
+import DetailScreen from '../../screens/DetailScreen';
+import DetailSecondScreen from '../../screens/DetailSecondScreen';
+import PaymentScreen from '../../screens/PaymentScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,13 +23,23 @@ const StackNavigator = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="EnterOtpScreen"
+        component={EnterOtpScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="RestaurantPage"
-        component={RestaurantDetail}
+        name="DetailScreen"
+        component={DetailScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailSecondScreen"
+        component={DetailSecondScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

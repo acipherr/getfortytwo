@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const AutofillOtpScreen = ({navigation}) => {
+const EnterOtpScreen = ({navigation}) => {
+  const [text, setText] = useState('Resend OTP (in 20 sec)');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setText('Resend OTP');
+    }, 10000);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View
         style={{
-          height: '35%',
+          height: '40%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -20,16 +28,29 @@ const AutofillOtpScreen = ({navigation}) => {
         <Text style={styles.dontPanicText}>Don’t Panic.</Text>
       </View>
       <View style={styles.subContainer}>
-        <Text
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
           style={{
-            color: '#8F8F8F',
-            fontSize: 14,
-            fontFamily: 'Ubuntu',
+            display: 'flex',
+            flexDirection: 'row',
             paddingVertical: 32,
             paddingHorizontal: 32,
+            alignItems: 'center',
           }}>
-          FortyTwo parking solution.
-        </Text>
+          <Image
+            source={require('../assets/Vector.png')}
+            style={{width: 16, height: 16, marginRight: 10}}
+          />
+          <Text
+            style={{
+              color: '#000',
+              fontSize: 16,
+              fontWeight: 400,
+              fontFamily: 'Ubuntu',
+            }}>
+            Back
+          </Text>
+        </TouchableOpacity>
         <Text
           style={{
             color: 'black',
@@ -37,28 +58,36 @@ const AutofillOtpScreen = ({navigation}) => {
             fontFamily: 'Ubuntu',
             paddingHorizontal: 32,
           }}>
-          enter your phone
+          enter OTP sent to your phone.
         </Text>
         <View style={styles.viewText}>
-          <Text style={styles.number}>9796458808</Text>
+          <Text style={styles.number}>1234</Text>
         </View>
         <Text
           style={{
             fontFamily: 'Ubuntu',
             fontSize: 14,
-            fontWeight: 400,
+            fontWeight: text != 'Resend OTP' ? 400 : 700,
             lineHeight: 16,
             textAlign: 'left',
-            marginHorizontal: 32,
+            color: text != 'Resend OTP' ? '#ACACAC' : '#000000',
+            marginTop: 100,
+            marginBottom: 40,
+            paddingHorizontal: 32,
+            textDecorationLine: text != 'Resend OTP' ? 'none' : 'underline',
+            textDecorationColor: '#000',
+            textDecorationStyle: 'solid',
           }}>
-          🥳 Akhilesh Khajuria has invited you. You are eligible for ₹150
-          discount
+          {text}
         </Text>
         <TouchableOpacity
           style={styles.continueButton}
-          onPress={() => navigation.navigate('EnterOtpScreen')}>
+          onPress={() => navigation.navigate('DetailScreen')}>
           <Text style={styles.continueText}>Continue</Text>
         </TouchableOpacity>
+        <Text style={styles.privacytext}>
+          by continuing, you agree to privacy policy and terms.
+        </Text>
       </View>
     </View>
   );
@@ -69,6 +98,14 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#462D85',
+  },
+  privacytext: {
+    paddingHorizontal: 32,
+    marginTop: 20,
+    color: '#8D8D8D',
+    fontSize: 10,
+    fontWeight: '400',
+    textAlign: 'center',
   },
   dontPanicText: {
     color: 'white',
@@ -82,7 +119,7 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     backgroundColor: 'white',
-    height: '65%',
+    height: '60%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
@@ -106,7 +143,7 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     backgroundColor: '#462D85',
-    marginTop: '45%',
+    // marginTop: '45%',
     height: 52,
     width: 300,
     marginHorizontal: 32,
@@ -123,4 +160,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AutofillOtpScreen;
+export default EnterOtpScreen;

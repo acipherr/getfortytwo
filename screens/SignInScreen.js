@@ -6,122 +6,60 @@ import LinearGradient from 'react-native-linear-gradient';
 const SignInScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <LinearGradient
-        colors={['#CD1F34', '#D9185B']}
+      <View
         style={{
-          flex: 1,
-          width: '100%',
+          height: '35%',
+          display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-        }}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 0}}>
-        <View style={{alignItems: 'flex-end', width: '96%', marginTop: '5%'}}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('AutoFillOtpScreen')}
-            style={{
-              width: 67,
-              height: 27,
-              borderRadius: 15,
-              backgroundColor: '#760C37',
-              justifyContent: 'center',
-            }}>
-            <Text style={{color: 'white', textAlign: 'center', fontSize: 16}}>
-              Skip
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.numberCont}>
-          <Text style={{color: 'black', fontSize: 27, fontWeight: '400'}}>
-            +91 9010858965
-          </Text>
-        </View>
-        <View style={styles.sentOtp}>
-          <Text style={{color: 'white', fontSize: 22, fontWeight: '400'}}>
-            Send OTP
-          </Text>
-        </View>
-
-        <View
+          position: 'relative',
+        }}>
+        <Image
+          source={require('./../assets/Fortytwo.png')}
+          style={{height: 45, width: 185}}
+        />
+        <Text style={styles.dontPanicText}>Don’t Panic.</Text>
+      </View>
+      <View style={styles.subContainer}>
+        <Text
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginVertical: '10%',
-            justifyContent: 'space-between',
-            width: '90%',
-            alignSelf: 'center',
+            color: '#8F8F8F',
+            fontSize: 14,
+            fontFamily: 'Ubuntu',
+            paddingVertical: 32,
+            paddingHorizontal: 32,
           }}>
-          <View style={{borderTopWidth: 1, borderColor: 'white', flex: 0.4}} />
-          <Text style={{color: 'white', textAlign: 'center', flex: 0.2}}>
-            OR
-          </Text>
-          <View style={{borderTopWidth: 1, borderColor: 'white', flex: 0.4}} />
-        </View>
-        <View style={styles.continueEmail}>
-          <Image
-            source={require('../assets/Emailicon.png')}
-            style={{width: 37, height: 27, marginLeft: 15}}
-          />
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 19,
-              fontWeight: '400',
-              marginRight: '12%',
-            }}>
-            Continue with Email
-          </Text>
-        </View>
-
-        <View style={styles.SocialIconCon}>
-          <View style={[styles.googleButton, {marginHorizontal: '2%'}]}>
-            <Image
-              source={require('../assets/facebookicon.png')}
-              style={{width: 29, height: 29, marginLeft: 15}}
-            />
-            <Text
-              style={{
-                color: 'black',
-                fontSize: 19,
-                fontWeight: '400',
-                marginRight: '12%',
-              }}>
-              Facebook
-            </Text>
-          </View>
-          <View style={[styles.googleButton, {marginHorizontal: '2%'}]}>
-            <Image
-              source={require('../assets/google.png')}
-              style={{width: 29, height: 29, marginLeft: 15}}
-            />
-            <Text
-              style={{
-                color: 'black',
-                fontSize: 19,
-                fontWeight: '400',
-                marginRight: '12%',
-              }}>
-              Google
-            </Text>
-          </View>
+          FortyTwo parking solution.
+        </Text>
+        <Text
+          style={{
+            color: 'black',
+            fontSize: 14,
+            fontFamily: 'Ubuntu',
+            paddingHorizontal: 32,
+          }}>
+          enter your phone
+        </Text>
+        <View style={styles.viewText}>
+          <Text style={styles.number}>9796458808</Text>
         </View>
         <Text
           style={{
-            color: 'white',
+            fontFamily: 'Ubuntu',
             fontSize: 14,
-            fontWeight: '400',
-            marginTop: '5%',
+            fontWeight: 400,
+            lineHeight: 16,
+            textAlign: 'left',
+            marginHorizontal: 32,
           }}>
-          By continuing, you agree to our
+          If you have a referal code, you can apply later.
         </Text>
-        <View style={{flexDirection: 'row', marginBottom: 7}}>
-          <Text style={styles.privacyText}>Terms of Service</Text>
-          <Text style={[styles.privacyText, {marginHorizontal: 5}]}>
-            Privacy Policy
-          </Text>
-          <Text style={styles.privacyText}>Content Policy</Text>
-        </View>
-      </LinearGradient>
+        <TouchableOpacity
+          style={styles.continueButton}
+          onPress={() => navigation.navigate('AutoFillOtpScreen')}>
+          <Text style={styles.continueText}>Continue</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -130,52 +68,58 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: '#462D85',
   },
-  sentOtp: {
-    backgroundColor: 'black',
-    width: '85%',
-    borderRadius: 10,
-    paddingVertical: 12,
-    alignItems: 'center',
-  },
-  numberCont: {
-    backgroundColor: 'white',
-    width: '85%',
-    borderRadius: 10,
-    paddingVertical: 8,
-    alignItems: 'center',
-    marginTop: '70%',
-    marginBottom: '10%',
-  },
-  privacyText: {
+  dontPanicText: {
     color: 'white',
-    fontSize: 14,
+    fontFamily: 'Ubuntu',
+    fontSize: 10,
     fontWeight: '400',
-    textDecorationLine: 'underline',
+    lineHeight: 11,
+    textAlign: 'left',
+    position: 'absolute',
+    bottom: 20,
   },
-  SocialIconCon: {
-    flexDirection: 'row',
-    marginVertical: 10,
-    width: '100%',
+  subContainer: {
+    backgroundColor: 'white',
+    height: '65%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  number: {
+    fontFamily: 'Ubuntu',
+    fontSize: 20,
+    fontWeight: '500',
+    lineHeight: 23,
+    textAlign: 'left',
+    color: 'black',
+  },
+  viewText: {
+    borderWidth: 1,
+    borderColor: '#757474',
+    marginHorizontal: 32,
+    marginVertical: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    width: 300,
+    borderRadius: 3,
+  },
+  continueButton: {
+    backgroundColor: '#462D85',
+    marginTop: '50%',
+    height: 52,
+    width: 300,
+    marginHorizontal: 32,
+    display: 'flex',
     justifyContent: 'center',
   },
-  googleButton: {
-    backgroundColor: 'white',
-    width: '40%',
-    borderRadius: 10,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  continueEmail: {
-    backgroundColor: 'white',
-    width: '85%',
-    borderRadius: 10,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: '5%',
+  continueText: {
+    fontFamily: 'Ubuntu',
+    fontSize: 20,
+    fontWeight: '500',
+    lineHeight: 23,
+    textAlign: 'center',
+    color: 'white',
   },
 });
 
